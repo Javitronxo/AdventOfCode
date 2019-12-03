@@ -3,3 +3,6 @@
 
 # Text files
 *.txt
+
+# Others
+.DS_Store
