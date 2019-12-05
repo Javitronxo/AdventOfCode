@@ -1,52 +1,32 @@
 # https://adventofcode.com/2019/day/2
-
-
-def read_input_file(file_name):
-    with open(file_name) as f_in:
-        input_list = [int(x) for x in f_in.read().split(',')]
-    return input_list
+import lib.utils as utils
 
 
 def int_code_processor(memory):
-    i = 0
-    while i < len(memory):
-        opcode = memory[i]
-        if opcode == 99:
-            return memory[0]
-        try:
-            noun_address = memory[i + 1]
-            verb_address = memory[i + 2]
-            noun = memory[noun_address]
-            verb = memory[verb_address]
-            position = memory[i + 3]
-            i += 4
-
-            if opcode == 1:
-                memory[position] = noun + verb
-            elif opcode == 2:
-                memory[position] = noun * verb
-            else:
-                print("Unrecognized opcode: {}".format(opcode))
-
-        except IndexError:
-            print("Index Error!?")
-            return None
+    pointer = 0
+    while memory[pointer] != 99:
+        code = memory[pointer]
+        noun = memory[memory[pointer + 1]]
+        verb = memory[memory[pointer + 2]]
+        position = memory[pointer + 3]
+        if code == 1:
+            memory[position] = noun + verb
+        elif code == 2:
+            memory[position] = noun * verb
+        pointer += 4
 
     return memory[0]
 
 
-def first_part(file_name):
-    memory = read_input_file(file_name)
+def first_part(memory):
     memory[1] = 12
     memory[2] = 2
     output = int_code_processor(memory)
     return output
 
 
-def second_part(file_name):
+def second_part(memory):
     target_output = 19690720
-    memory = read_input_file(file_name)
-
     for i in range(100):
         for j in range(100):
             tmp_memory = memory[:]
@@ -58,10 +38,10 @@ def second_part(file_name):
 
 
 def main():
-    file_name = 'day_2_input.txt'
-    result_first_part = first_part(file_name)
+    memory = utils.read_file_to_int_list('day_2_input.txt')
+    result_first_part = first_part(memory[:])
     print("First part result: {}".format(result_first_part))
-    result_second_part = second_part(file_name)
+    result_second_part = second_part(memory[:])
     print("Second part result: {}".format(result_second_part))
 
 

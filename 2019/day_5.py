@@ -1,10 +1,5 @@
 # https://adventofcode.com/2019/day/5
-
-
-def read_input_file(file_name):
-    with open(file_name) as f_in:
-        input_list = [int(x) for x in f_in.read().split(',')]
-    return input_list
+import lib.utils as utils
 
 
 def int_code_processor(memory, input_code):
@@ -40,9 +35,7 @@ def int_code_processor(memory, input_code):
         elif code in [5, 6]:
             noun = memory[pointer + 1] if c else memory[memory[pointer + 1]]
             verb = memory[pointer + 2] if b else memory[memory[pointer + 2]]
-            if code == 5 and noun != 0:
-                pointer = verb
-            elif code == 6 and noun == 0:
+            if (code == 5 and noun != 0) or (code == 6 and noun == 0):
                 pointer = verb
             else:
                 pointer += 3
@@ -51,7 +44,7 @@ def int_code_processor(memory, input_code):
 
 
 def main():
-    memory = read_input_file('day_5_input.txt')
+    memory = utils.read_file_to_int_list('day_5_input.txt')
     result_first_part = int_code_processor(memory[:], 1)
     print("First part result: {}".format(result_first_part))
     result_second_part = int_code_processor(memory[:], 5)
