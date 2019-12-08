@@ -35,8 +35,8 @@ class Image:
                 if combined[i] == '2':
                     if layer[i] == '0':
                         combined = combined[:i] + ' ' + combined[i + 1:]
-                    else:
-                        combined = combined[:i] + layer[i] + combined[i + 1:]
+                    elif layer[i] == '1':
+                        combined = combined[:i] + '#' + combined[i + 1:]
         final_image = [combined[i:i + self.width] for i in range(0, len(combined), self.width)]
         return final_image
 
