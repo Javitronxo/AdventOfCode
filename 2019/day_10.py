@@ -149,11 +149,11 @@ def main():
 
     max_visible_asteroids, best_asteroid = asteroid_map.get_best_asteroid()
     result_first_part = len(max_visible_asteroids)
-    print("First part result: {}".format(result_first_part))  # 227
+    print("First part result: {}".format(result_first_part))
 
     asteroids_vaporized = asteroid_map.vaporize_asteroids(best_asteroid)
     result_second_part = asteroids_vaporized[200 - 1][0] * 100 + asteroids_vaporized[200 - 1][1]
-    print("Second part result: {}".format(result_second_part))  # 604
+    print("Second part result: {}".format(result_second_part))
 
 
 if __name__ == '__main__':
