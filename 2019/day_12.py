@@ -18,7 +18,7 @@ def read_input_file(file_name):
 
 class System:
     def __init__(self, moons):
-        self.moons = moons[:]
+        self.moons = moons
         self.cycles = [None, None, None]
 
     def get_total_energy(self):
@@ -27,8 +27,8 @@ class System:
             total_energy += moon.get_total_energy()
         return total_energy
 
-    def evolve(self, time_step=1):
-        for t in range(1, time_step + 1):
+    def evolve(self, time_steps=1):
+        for t in range(1, time_steps + 1):
             for combination in combinations(self.moons, 2):
                 moon_1, moon_2 = combination
                 moon_1.apply_gravity(moon_2)
