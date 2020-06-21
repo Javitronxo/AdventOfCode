@@ -19,8 +19,8 @@ def main():
     for i in range(iterations):
         input_str = look_and_say(input_str)
         if i == (40 - 1):  # Part 1: Result for 40 iterations
-            print('The length of the result is %d' % len(input_str))
-    print('The length of the result is %d' % len(input_str))
+            print('The length of the result for %d iterations is %d' % ((i + 1), len(input_str)))
+    print('The length of the result for %d iterations is %d' % (iterations, len(input_str)))
 
 
 if __name__ == '__main__':
