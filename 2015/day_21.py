@@ -88,23 +88,12 @@ def play_game(player: Character, boss: Character) -> bool:
     """Play the game with current character set
     Return True if player wins, False otherwise
     """
-
-    def next_turn():
-        nonlocal attacker, defender
-        buff = defender
-        defender = attacker
-        attacker = buff
-
     attacker = player
     defender = boss
     while player.hit_points > 0 and boss.hit_points > 0:
         defender.take_damage(attacker.damage)
-        next_turn()
-
-    if boss.hit_points <= 0:
-        return True
-    else:
-        return False
+        attacker, defender = defender, attacker
+    return True if boss.hit_points <= 0 else False
 
 
 def main():
