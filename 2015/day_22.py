@@ -1,4 +1,5 @@
 import re
+from typing import List, Tuple
 
 
 class Spell:
@@ -100,7 +101,7 @@ class Character:
             if spell.timer == 0:
                 spells_to_remove.add(spell)
 
-        # Remove spells and change flags
+        # Remove expired spells
         for spell in spells_to_remove:
             if type(spell) == Shield:
                 self.armor -= spell.armor
@@ -115,12 +116,12 @@ class Character:
 def print_game_stats(current: Character, player: Character, boss: Character, turn: int):
     if current == player:
         current_player = 'Player'
+        print(f"* Player has spent {player.mana_used} mana so far")
     else:
         current_player = 'Boss'
     print(f"-- {current_player} turn #{turn} --")
     print(f"- Player has {player.hit_points} hit points, {player.armor} armor, {player.mana} mana")
     print(f"- Boss has {boss.hit_points} hit points")
-    print(f"* Player has spent {player.mana_used} mana so far")
 
 
 def play_game(player: Character, boss: Character, hard_level: bool = False) -> bool:
@@ -164,7 +165,14 @@ def print_game_summary(player: Character, winner: bool):
     if not winner:
         print(f"You are a loser! We spent {player.mana_used} mana in this battle and lost!")
     else:
-        print(f"We won! We spent {player.mana_used} mana in this battle. Spells used: {' -> '.join(player.used_spells)}")
+        print(
+            f"We won! We spent {player.mana_used} mana in this battle. Spells used: {' -> '.join(player.used_spells)}")
+
+
+def reset_game(boss_stats: List[str]) -> Tuple[Character, Character]:
+    boss = Character(hit_points=int(boss_stats[0]), damage=int(boss_stats[1]))
+    player = Character(hit_points=50, mana=500)
+    return player, boss
 
 
 def main():
@@ -172,8 +180,7 @@ def main():
     with open('day_22_input.txt') as f_in:
         input_str = f_in.read()
         boss_stats = re.findall(r'\d+', input_str)
-        boss = Character(hit_points=int(boss_stats[0]), damage=int(boss_stats[1]))
-    player = Character(hit_points=50, mana=500)
+    player, boss = reset_game(boss_stats)
 
     # Part 1: Easy mode
     winner = play_game(player, boss)
@@ -181,7 +188,8 @@ def main():
     # Wining combo:
     # Magic Missile -> Poison -> Recharge -> Magic Missile -> Poison -> Shield -> Magic Missile -> Magic Missile
 
-    # # Part 2: hard mode
+    # Part 2: hard mode
+    player, boss = reset_game(boss_stats)
     winner = play_game(player, boss, hard_level=True)
     print_game_summary(player, winner)
     # Wining combo: Poison -> Magic Missile -> Recharge -> Poison -> Shield -> Recharge -> Poison -> Drain
