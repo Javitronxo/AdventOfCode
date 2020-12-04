@@ -5,9 +5,9 @@ def main():
     valid_passwords_part_1 = 0
     valid_passwords_part_2 = 0
 
-    with open('day_2_input.txt') as f:
+    with open("day_2_input.txt") as f:
         for line in f.readlines():
-            line_pattern = r'(\d+)-(\d+) (\w): (\w+)'
+            line_pattern = r"(\d+)-(\d+) (\w): (\w+)"
 
             a, b, letter, password = re.findall(line_pattern, line)[0]
             if int(a) <= password.count(letter) <= int(b):
@@ -19,5 +19,5 @@ def main():
     print(f"Part 2: We have {valid_passwords_part_2} passwords")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

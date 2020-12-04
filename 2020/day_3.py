@@ -5,14 +5,14 @@ def get_num_trees(input_map: List[str], slope: List[int]) -> int:
     num_trees = 0
     position = [slope[0], slope[1]]
     while position[0] < len(input_map):
-        if input_map[position[0]][position[1]] == '#':
+        if input_map[position[0]][position[1]] == "#":
             num_trees += 1
         position = [(position[0] + slope[0]), ((position[1] + slope[1]) % len(input_map[0]))]
     return num_trees
 
 
 def main():
-    with open('day_3_input.txt') as f:
+    with open("day_3_input.txt") as f:
         input_map = list()
         for line in f.readlines():
             input_map.append(line.strip())
@@ -26,5 +26,5 @@ def main():
     print(f"Part 2: There were {total_trees} trees")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
