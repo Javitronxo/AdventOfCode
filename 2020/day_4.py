@@ -24,8 +24,6 @@ class Passport:
         return all(field in present_keys_set for field, value in EXPECTED_FIELDS.items() if value)
 
     def _has_valid_info(self) -> bool:
-        if not self._has_required_info():
-            return False
         if (
             (1920 <= int(self.fields["byr"]) <= 2020)
             and (2010 <= int(self.fields["iyr"]) <= 2020)
