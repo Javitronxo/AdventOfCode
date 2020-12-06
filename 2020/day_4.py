@@ -50,6 +50,8 @@ def main():
             else:
                 passports.append(Passport(passport_str))
                 passport_str = ""
+        if passport_str:
+            passports.append(Passport(passport_str))
 
     part_1_passports = sum(passport.has_all_fields for passport in passports)
     print(f"Part 1: We have {part_1_passports} valid passports")
