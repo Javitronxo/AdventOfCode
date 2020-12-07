@@ -18,17 +18,15 @@ class BoardingPass:
         max_col = Plane.NUM_COLUMNS - 1
         min_row = 0
         min_col = 0
-        for i, char in enumerate(boarding_pass_raw):
-            if i < 7:
-                if char == "F":
-                    max_row -= trunc((max_row - min_row + 1) / 2)
-                elif char == "B":
-                    min_row += round((max_row - min_row + 1) / 2)
-            else:
-                if char == "L":
-                    max_col -= trunc((max_col - min_col + 1) / 2)
-                elif char == "R":
-                    min_col += round((max_col - min_col + 1) / 2)
+        for char in boarding_pass_raw:
+            if char == "F":
+                max_row -= trunc((max_row - min_row + 1) / 2)
+            elif char == "B":
+                min_row += round((max_row - min_row + 1) / 2)
+            elif char == "L":
+                max_col -= trunc((max_col - min_col + 1) / 2)
+            elif char == "R":
+                min_col += round((max_col - min_col + 1) / 2)
 
         assert max_row == min_row
         assert max_col == min_col
