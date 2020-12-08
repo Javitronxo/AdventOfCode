@@ -14,10 +14,10 @@ class Register:
     def execute(self, instruction: str) -> int:
         operation, offset = self.parse_instruction(instruction)
         if operation == "acc":
-            self.accumulator += int(offset)
+            self.accumulator += offset
             return 1
         elif operation == "jmp":
-            return int(offset)
+            return offset
         elif operation == "nop":
             return 1
         else:
@@ -48,7 +48,7 @@ def main():
         if operation in ["nop", "jmp"]:
             new_instructions = deepcopy(instructions)
             new_instructions[i] = (
-                instructions[i].replace("nop", "jpm") if operation == "nop" else instructions[i].replace("jmp", "nop")
+                instructions[i].replace("nop", "jmp") if operation == "nop" else instructions[i].replace("jmp", "nop")
             )
             result = run_all(new_instructions)
             if result[1] == 2:
