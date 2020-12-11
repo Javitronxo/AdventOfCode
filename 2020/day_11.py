@@ -13,6 +13,7 @@ def apply_rules(input_map: floor_map, part: int) -> floor_map:
         for j, seat in enumerate(row):
             if seat == ".":
                 new_map[i][j] = seat
+                continue
 
             occupied_seats = 0
             if part == 1:
