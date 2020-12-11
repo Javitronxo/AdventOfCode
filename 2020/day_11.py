@@ -48,21 +48,15 @@ def apply_rules(input_map: floor_map, part: int) -> floor_map:
 
 
 def main():
-    input_map_original = list()
-    with open("day_11_input.txt") as f:
-        for line in f.read().splitlines():
-            input_map_original.append([char for char in line])
-
     for i in [1, 2]:
-        input_map = deepcopy(input_map_original)
+        with open("day_11_input.txt") as f:
+            input_map = [[char for char in line] for line in f.read().splitlines()]
         while True:
             new_map = apply_rules(input_map, part=i)
-            occupied_seats = sum(row.count("#") for row in new_map)
             if new_map == input_map:
                 break
-            else:
-                input_map = new_map
-        print(f"Part {i}: We have {occupied_seats} occupied seats")
+            input_map = new_map
+        print(f"Part {i}: We have {sum(row.count('#') for row in new_map)} occupied seats")
 
 
 if __name__ == "__main__":
