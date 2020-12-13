@@ -1,9 +1,3 @@
-"""
-NOTE: Pretty sure part 2 is not well solved, but thanks to the beauty of taxicab geometry I still get the expected
-    distance. But the rotate_point function should move one point relative to the other...
-    Still, is Friday night and this was extra-extra-challenging to solve after those weird gummies you ate before.
-    The keyboard feels pretty weird, spent too much time looking for the right key all the time...
-"""
 from typing import List, Tuple
 
 Point = Tuple[int, int]
@@ -74,7 +68,7 @@ def move_ship(instructions: List[str]) -> Point:
 
 
 def main():
-    with open("day_12_test1.txt") as f:
+    with open("day_12_input.txt") as f:
         input_lines = f.read().splitlines()
     distance_1, distance_2 = move_ship(input_lines)
     print(f"Part 1: Manhattan distance between that location and the ship's starting position is {distance_1}")
