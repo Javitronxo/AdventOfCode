@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 def main():
-    with open('day_10_input.txt') as f:
+    with open("day_10_input.txt") as f:
         input_lines = [int(x) for x in f.read().splitlines()]
 
     adapters = [0] + sorted(input_lines)
@@ -20,5 +20,5 @@ def main():
     print(f"Part 2: {connections[adapters[-1]]}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

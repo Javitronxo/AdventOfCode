@@ -7,7 +7,7 @@ def main():
 
     target_number = None
     for i in range(25, len(input_list)):
-        preamble = input_list[(i - 25):i]
+        preamble = input_list[(i - 25) : i]
         valid_number = False
         for p in permutations(preamble, 2):
             if (p[0] + p[1] == input_list[i]) and (p[0] != p[1]):

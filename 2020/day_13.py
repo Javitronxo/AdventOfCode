@@ -18,10 +18,10 @@ def find_bus_cadence(bus: int, cadence: int, start_time: int, offset: int) -> Tu
 
 
 def main():
-    with open('day_13_input.txt') as f:
+    with open("day_13_input.txt") as f:
         input_lines = f.read().splitlines()
     my_time = int(input_lines[0])
-    bus_lines = [int(b) if b.isdigit() else None for b in input_lines[1].split(',')]
+    bus_lines = [int(b) if b.isdigit() else None for b in input_lines[1].split(",")]
 
     min_wait = sys.maxsize
     bus_id = None
@@ -44,8 +44,8 @@ def main():
             continue
         timestamp, cadence = find_bus_cadence(bus, cadence, timestamp, offset)
     timestamp -= offset
-    print(f'Part 2: {timestamp}')
+    print(f"Part 2: {timestamp}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
