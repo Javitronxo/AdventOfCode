@@ -1,10 +1,10 @@
 from collections import defaultdict
 from itertools import product
-from typing import Any, List, Tuple
+from typing import Union, List, Tuple
 
 Point = Tuple[int, int, int]
 HyperPoint = Tuple[int, int, int, int]
-SparseMap = List[Any[Point, HyperPoint]]
+SparseMap = List[Union[Point, HyperPoint]]
 
 
 def boot_machine(sparse_map: SparseMap, n_cycles: int) -> SparseMap:
@@ -19,9 +19,10 @@ def boot_machine(sparse_map: SparseMap, n_cycles: int) -> SparseMap:
         # Generate next map with active cubes
         next_map = list()
         for cube in active_neighbours:
-            if cube not in sparse_map and active_neighbours[cube] == 3:
-                next_map.append(cube)
-            elif cube in sparse_map and active_neighbours[cube] in [2, 3]:
+            if (
+                (cube not in sparse_map and active_neighbours[cube] == 3)
+                or (cube in sparse_map and active_neighbours[cube] in [2, 3])
+            ):
                 next_map.append(cube)
         sparse_map = next_map
     return sparse_map
