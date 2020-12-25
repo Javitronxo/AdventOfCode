@@ -19,9 +19,8 @@ def boot_machine(sparse_map: SparseMap, n_cycles: int) -> SparseMap:
         # Generate next map with active cubes
         next_map = list()
         for cube in active_neighbours:
-            if (
-                (cube not in sparse_map and active_neighbours[cube] == 3)
-                or (cube in sparse_map and active_neighbours[cube] in [2, 3])
+            if (cube not in sparse_map and active_neighbours[cube] == 3) or (
+                cube in sparse_map and active_neighbours[cube] in [2, 3]
             ):
                 next_map.append(cube)
         sparse_map = next_map
@@ -34,20 +33,10 @@ def main():
     n_cycles = 6
 
     # Sparse map with only active points
-    input_map = [
-        (x, y, 0)
-        for y, line in enumerate(input_lines)
-        for x, cube in enumerate(line)
-        if cube == "#"
-    ]
+    input_map = [(x, y, 0) for y, line in enumerate(input_lines) for x, cube in enumerate(line) if cube == "#"]
     print(f"Part 1: {len(boot_machine(input_map, n_cycles))}")
 
-    input_map = [
-        (x, y, 0, 0)
-        for y, line in enumerate(input_lines)
-        for x, cube in enumerate(line)
-        if cube == "#"
-    ]
+    input_map = [(x, y, 0, 0) for y, line in enumerate(input_lines) for x, cube in enumerate(line) if cube == "#"]
     print(f"Part 2: {len(boot_machine(input_map, n_cycles))}")
 
 

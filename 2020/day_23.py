@@ -3,6 +3,7 @@ from collections import deque
 
 class Cup:
     """Node for the double linked list"""
+
     def __init__(self, value: int):
         self.value = value
         self.previous = None
@@ -90,7 +91,7 @@ def main():
     while cups[0] != 1:
         cups.rotate(1)
     cups.popleft()
-    answer = ''.join([str(i) for i in cups])
+    answer = "".join([str(i) for i in cups])
     print(f"Part 1: {answer}")
 
     # Part 2 solved with a double linked list
@@ -105,5 +106,5 @@ def main():
     print(f"Part 2: {answer}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

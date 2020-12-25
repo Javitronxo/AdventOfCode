@@ -38,7 +38,7 @@ def main():
     player_2_deck = list()
     player_1 = True
     for line in input_lines:
-        if 'Player' in line:
+        if "Player" in line:
             continue
         elif not line:
             player_1 = False
@@ -56,5 +56,5 @@ def main():
     print(f"Part 2: {answer}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
