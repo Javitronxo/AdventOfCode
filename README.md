@@ -13,4 +13,4 @@ Join my leaderboard: `414664-e14c5462`
 - 2017: Pending
 - 2018: Pending
 - 2019: In progress (December 2019 - ??)
-- 2020: In progress (December 2020 - ??)
+- 2020: Completed (December 2020)
