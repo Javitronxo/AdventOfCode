@@ -4,7 +4,7 @@ from typing import List
 
 class IPv7:
     def __init__(self, address: str):
-        self.address_parts = re.split(r'[\[\]]', address.strip())
+        self.address_parts = re.split(r"[\[\]]", address.strip())
         self.tls_support = self._has_tls_support()
         self.ssl_support = self._has_ssl_support()
 
@@ -54,7 +54,7 @@ class IPv7:
 def main():
     addresses_tls_support = list()
     addresses_ssl_support = list()
-    with open('day_7_input.txt') as f_in:
+    with open("day_7_input.txt") as f_in:
         for line in f_in.readlines():
             ipv7_address = IPv7(line)
             if ipv7_address.tls_support:
@@ -66,5 +66,5 @@ def main():
     print(f"Part 2: We have {len(addresses_ssl_support)} with SSL support")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

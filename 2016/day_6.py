@@ -1,6 +1,6 @@
 def main():
     input_list = list()
-    with open('day_6_input.txt') as f_in:
+    with open("day_6_input.txt") as f_in:
         for line in f_in.readlines():
             input_list.append(line.strip())
 
@@ -31,5 +31,5 @@ def main():
     print(f"Part 2: The error-corrected version of the message being sent is {target_word_2}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -6,8 +6,8 @@ def get_distance(point: List[int]) -> int:
 
 
 def main():
-    with open('day_1_input.txt') as f_in:
-        instructions = f_in.read().split(', ')
+    with open("day_1_input.txt") as f_in:
+        instructions = f_in.read().split(", ")
 
     current_location = [0, 0]
     visited_locations = [current_location]
@@ -17,9 +17,9 @@ def main():
         turn = instruction[0]
         steps = int(instruction[1:])
 
-        if turn == 'R':
+        if turn == "R":
             direction += 90
-        elif turn == 'L':
+        elif turn == "L":
             direction += 270
         else:
             raise ValueError(f"Unrecognized turn {turn}")
@@ -46,5 +46,5 @@ def main():
     print(f"Part 2: We have to move {get_distance(first_double_location)} blocks away")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

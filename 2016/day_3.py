@@ -10,9 +10,9 @@ def is_possible_triangle(sides: List[int]) -> bool:
 
 def main():
     triangle_candidates = list()
-    with open('day_3_input.txt') as f_in:
+    with open("day_3_input.txt") as f_in:
         for line in f_in.readlines():
-            candidate = re.search(r'(\d+)\s+(\d+)\s+(\d+)', line).groups()
+            candidate = re.search(r"(\d+)\s+(\d+)\s+(\d+)", line).groups()
             triangle_candidates.append([int(i) for i in candidate])
 
     possible_triangles = 0
@@ -33,5 +33,5 @@ def main():
     print(f"Part 2: We have {possible_triangles} possible triangles")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

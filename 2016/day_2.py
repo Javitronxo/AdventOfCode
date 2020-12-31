@@ -1,17 +1,17 @@
 from typing import List
 
 CODE_PAD_1 = [
-    ['1', '2', '3'],
-    ['4', '5', '6'],
-    ['7', '8', '9'],
+    ["1", "2", "3"],
+    ["4", "5", "6"],
+    ["7", "8", "9"],
 ]
 
 CODE_PAD_2 = [
-    [None, None, '1', None, None],
-    [None, '2', '3', '4', None],
-    ['5', '6', '7', '8', '9'],
-    [None, 'A', 'B', 'C', None],
-    [None, None, 'D', None, None],
+    [None, None, "1", None, None],
+    [None, "2", "3", "4", None],
+    ["5", "6", "7", "8", "9"],
+    [None, "A", "B", "C", None],
+    [None, None, "D", None, None],
 ]
 
 
@@ -19,13 +19,13 @@ def get_code(current_position: List[int], code_pad: List[List[str]], instruction
     code = str()
     for instruction in instructions:
         for step in instruction:
-            if step == 'L':
+            if step == "L":
                 move = [0, -1]
-            elif step == 'R':
+            elif step == "R":
                 move = [0, 1]
-            elif step == 'U':
+            elif step == "U":
                 move = [-1, 0]
-            elif step == 'D':
+            elif step == "D":
                 move = [1, 0]
             else:
                 raise ValueError(f"Unrecognized step: {step}")
@@ -42,7 +42,7 @@ def get_code(current_position: List[int], code_pad: List[List[str]], instruction
 
 def main():
     instructions = list()
-    with open('day_2_input.txt') as f_in:
+    with open("day_2_input.txt") as f_in:
         for line in f_in.readlines():
             instruction = line.strip()
             instructions.append(instruction)
@@ -53,5 +53,5 @@ def main():
     print(f"Part 2: The code for the bathroom is: {get_code(initial_position, CODE_PAD_2, instructions)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

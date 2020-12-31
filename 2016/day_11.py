@@ -41,32 +41,32 @@ class Floor:
         return self.chips + self.generators
 
     def __str__(self):
-        return '\t'.join(self.elements)
+        return "\t".join(self.elements)
 
     def __len__(self):
         return len(self.elements)
 
     def remove(self, elements):
         for element in elements:
-            if element.endswith('M'):
+            if element.endswith("M"):
                 self.chips.remove(element)
-            elif element.endswith('G'):
+            elif element.endswith("G"):
                 self.generators.remove(element)
 
     def add(self, elements):
         for element in elements:
-            if element.endswith('M'):
+            if element.endswith("M"):
                 self.chips.append(element)
-            elif element.endswith('G'):
+            elif element.endswith("G"):
                 self.generators.append(element)
 
     def is_safe(self, elements) -> bool:
         generators = [generator[:-1] for generator in self.generators]
         chips = [chip[:-1] for chip in self.chips]
         for element in elements:
-            if element.endswith('M'):
+            if element.endswith("M"):
                 chips.append(element[:-1])
-            elif element.endswith('G'):
+            elif element.endswith("G"):
                 generators.append(element[:-1])
         if not len(generators):
             return True
@@ -81,10 +81,10 @@ class Floor:
 
 def main():
     building = Building()
-    with open('day_11_input.txt') as f_in:
+    with open("day_11_input.txt") as f_in:
         for i, line in enumerate(f_in.readlines()):
-            chips = [chip + 'M' for chip in re.findall(r'(\w+)-compatible microchip', line)]
-            generators = [generator + 'G' for generator in re.findall(r'(\w+) generator', line)]
+            chips = [chip + "M" for chip in re.findall(r"(\w+)-compatible microchip", line)]
+            generators = [generator + "G" for generator in re.findall(r"(\w+) generator", line)]
             floor = Floor(chips, generators)
             building.add_floor(floor)
 
@@ -96,31 +96,31 @@ def main():
 
         # Load elevator
         while True:
-            elements = input('What elements do you want to add in the elevator? ').split()
+            elements = input("What elements do you want to add in the elevator? ").split()
             if building.check_elements_floor(elements):
                 break
 
         while True:
-            direction = int(input('Do you want to move up (1)? Or down(2)? '))
+            direction = int(input("Do you want to move up (1)? Or down(2)? "))
             if direction == 1:
                 if building.current_floor == len(building.floors):
-                    print('We are already in the top floor')
+                    print("We are already in the top floor")
                     continue
                 next_floor = building.floors[building.current_floor + 1]
                 is_safe = next_floor.is_safe(elements)
                 break
             elif direction == 2:
                 if building.current_floor == 0:
-                    print('We are already in the ground floor')
+                    print("We are already in the ground floor")
                     continue
                 next_floor = building.floors[building.current_floor - 1]
                 is_safe = next_floor.is_safe(elements)
                 break
             else:
-                print('Could not recognize the instruction.')
+                print("Could not recognize the instruction.")
 
         if not is_safe:
-            print('That is not a safe move, please try again.')
+            print("That is not a safe move, please try again.")
             continue
 
         # Update the building status
@@ -137,5 +137,5 @@ def main():
     # Part 2: 47 + 24 -> 7 more moves per floor for 2 more pairs
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

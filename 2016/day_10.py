@@ -30,12 +30,12 @@ class Bot(Node):
 
 
 def main():
-    bot_pattern = r'bot (\d+) gives low to (\w+) (\d+) and high to (\w+) (\d+)'
-    input_pattern = r'value (\d+) goes to bot (\d+)'
+    bot_pattern = r"bot (\d+) gives low to (\w+) (\d+) and high to (\w+) (\d+)"
+    input_pattern = r"value (\d+) goes to bot (\d+)"
 
     bots = list()
     outputs = list()
-    with open('day_10_input.txt') as f_in:
+    with open("day_10_input.txt") as f_in:
         lines = f_in.readlines()
 
         # Initialize all bots
@@ -44,14 +44,14 @@ def main():
                 bot_info = re.search(bot_pattern, line).groups()
                 bot = Bot(bot_info[0])
                 # Define low value
-                if bot_info[1] == 'output':
+                if bot_info[1] == "output":
                     output = Node(bot_info[2])
                     bot.low = output
                     outputs.append(output)
                 else:
                     bot.low = bot_info[2]
                 # Define high value
-                if bot_info[3] == 'output':
+                if bot_info[3] == "output":
                     output = Node(bot_info[4])
                     bot.high = output
                     outputs.append(output)
@@ -75,10 +75,10 @@ def main():
 
     part_2_result = 1
     for output in outputs:
-        if output.number in ['0', '1', '2']:
+        if output.number in ["0", "1", "2"]:
             part_2_result *= output.chips[0]
     print(f"Part 2: Multiply together the values of one chip in each of outputs 0, 1, and 2: {part_2_result}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

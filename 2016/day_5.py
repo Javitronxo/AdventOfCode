@@ -2,18 +2,18 @@ from hashlib import md5
 
 
 def get_md5_hash(input_str: str) -> str:
-    return md5(bytes(input_str, encoding='utf-8')).hexdigest()
+    return md5(bytes(input_str, encoding="utf-8")).hexdigest()
 
 
 def main():
-    puzzle_input = open('day_5_input.txt').read()
+    puzzle_input = open("day_5_input.txt").read()
 
     password_1 = str()
     password_2 = [None] * 8
     i = 0
     while len(password_1) < 8 or None in password_2:
         candidate_hash = get_md5_hash(puzzle_input + str(i))
-        if candidate_hash.startswith('00000'):
+        if candidate_hash.startswith("00000"):
             # Check password for Part 1
             if len(password_1) < 8:
                 password_1 += candidate_hash[5]
@@ -29,5 +29,5 @@ def main():
     print(f"Part 2: The password is {''.join(password_2)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
