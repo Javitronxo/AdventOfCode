@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 
 class Elf:
@@ -14,35 +14,32 @@ class Elf:
         self.previous.next = self.next
 
 
-def get_dutch_rudder(puzzle_input: int) -> List[Elf]:
+def get_dutch_rudder(puzzle_input: int) -> Tuple[List[Elf], Elf]:
     """Create a circular linked list of elves"""
-    dutch_rudder = [Elf(0)]
+    head = Elf(0)
+    dutch_rudder = [head]
     for i in range(1, puzzle_input):
         elf = Elf(i)
         elf.previous = dutch_rudder[-1]
         dutch_rudder[-1].next = elf
         dutch_rudder.append(elf)
-    dutch_rudder[0].previous = dutch_rudder[-1]
-    dutch_rudder[-1].next = dutch_rudder[0]
-    return dutch_rudder
+    head.previous = dutch_rudder[-1]
+    dutch_rudder[-1].next = head
+    return dutch_rudder, head
 
 
 def main():
     with open("day_19_input.txt") as f:
         puzzle_input = int(f.read())
 
-    dutch_rudder = get_dutch_rudder(puzzle_input)
-    head = dutch_rudder[0]
-    while True:
-        if head == head.next == head.previous:
-            break
+    dutch_rudder, head = get_dutch_rudder(puzzle_input)
+    while not(head == head.next == head.previous):
         head = head.next
         head.remove()
         head = head.next
     print(f"Part 1: {head.number + 1}")
 
-    dutch_rudder = get_dutch_rudder(puzzle_input)
-    head = dutch_rudder[0]
+    dutch_rudder, head = get_dutch_rudder(puzzle_input)
     center = dutch_rudder[puzzle_input // 2]
     for i in range(puzzle_input - 1):
         center.remove()
