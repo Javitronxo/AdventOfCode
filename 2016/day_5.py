@@ -1,8 +1,4 @@
-from hashlib import md5
-
-
-def get_md5_hash(input_str: str) -> str:
-    return md5(bytes(input_str, encoding="utf-8")).hexdigest()
+from lib.utils import get_md5_hash
 
 
 def main():

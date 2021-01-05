@@ -33,7 +33,7 @@ def main():
         puzzle_input = int(f.read())
 
     dutch_rudder, head = get_dutch_rudder(puzzle_input)
-    while not(head == head.next == head.previous):
+    while not (head == head.next == head.previous):
         head = head.next
         head.remove()
         head = head.next

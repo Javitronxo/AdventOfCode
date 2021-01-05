@@ -23,5 +23,10 @@ def lcm(x, y):
     return (x * y) // gcd(x, y)
 
 
-def get_md5_hash(input_str: str) -> str:
-    return md5(bytes(input_str, encoding="utf-8")).hexdigest()
+def get_md5_hash(input_string: str, stretch_factor: int = None) -> str:
+    """Get MD5 hexadecimal hash"""
+    hex_hash = md5(bytes(input_string, "utf-8")).hexdigest()
+    if stretch_factor:
+        for _ in range(stretch_factor):
+            hex_hash = get_md5_hash(hex_hash)
+    return hex_hash
