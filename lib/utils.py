@@ -1,15 +1,16 @@
 from collections import defaultdict
 from hashlib import md5
 from math import gcd
+from typing import Dict, List
 
 
-def read_file_to_int_list(file_name):
+def read_file_to_int_list(file_name: str) -> List[int]:
     with open(file_name) as f_in:
         input_list = [int(x) for x in f_in.read().split(",")]
     return input_list
 
 
-def read_file_to_int_dict(file_name):
+def read_file_to_int_dict(file_name: str) -> Dict[int, int]:
     with open(file_name) as f_in:
         input_list = [int(x) for x in f_in.read().split(",")]
     input_dict = defaultdict(int)
@@ -18,7 +19,7 @@ def read_file_to_int_dict(file_name):
     return input_dict
 
 
-def lcm(x, y):
+def lcm(x: int, y: int) -> int:
     """This function computes LCM"""
     return (x * y) // gcd(x, y)
 

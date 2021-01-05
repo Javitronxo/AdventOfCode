@@ -66,7 +66,9 @@ class Computer:
                 return instruction.replace(parts[0], "jnz")
 
 
-def run_program(instructions: List[str], offset_a: int = 0, offset_b: int = 0, offset_c: int = 0, offset_d: int = 0) -> int:
+def run_program(
+    instructions: List[str], offset_a: int = 0, offset_b: int = 0, offset_c: int = 0, offset_d: int = 0
+) -> int:
     computer = Computer(offset_a=offset_a, offset_b=offset_b, offset_c=offset_c, offset_d=offset_d)
     i = 0
     while i < len(instructions):
