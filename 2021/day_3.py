@@ -49,5 +49,5 @@ def main():
     print(f"Part 2: {oxygen_number * c02_number}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

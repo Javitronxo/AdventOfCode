@@ -9,12 +9,14 @@ class Vent:
         self.path = self._get_path()
 
     def _get_path(self) -> List[Tuple[int]]:
-        vector_x = 1 if self.end[0] > self.start[0] else -1 if self.end[0] < self.start[0] else 0
-        vector_y = 1 if self.end[1] > self.start[1] else -1 if self.end[1] < self.start[1] else 0
+        vector = [
+            1 if self.end[0] > self.start[0] else -1 if self.end[0] < self.start[0] else 0,
+            1 if self.end[1] > self.start[1] else -1 if self.end[1] < self.start[1] else 0,
+        ]
         point = self.start
         path = [point]
         while point != self.end:
-            point = (point[0] + vector_x, point[1] + vector_y)
+            point = (point[0] + vector[0], point[1] + vector[1])
             path.append(point)
         return path
 
@@ -50,5 +52,5 @@ def main():
     print(f"Part 2: {sum(1 for n in sea_map.values() if n > 1)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

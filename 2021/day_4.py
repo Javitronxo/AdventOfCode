@@ -67,5 +67,5 @@ def main():
                 print(f"Part 2: {bingo_card.get_score(number)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
