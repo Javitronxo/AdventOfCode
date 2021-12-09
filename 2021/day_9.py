@@ -22,15 +22,17 @@ def main():
 
     basins = list()
     for point, value in low_points.items():
-        neighbours = set([
-            new_point
-            for vector in vectors
-            if (
-                    (new_point := (point[0] + vector[0], point[1] + vector[1])) in sea_map and
-                    sea_map[new_point] > value and
-                    sea_map[new_point] != 9
-            )
-        ])
+        neighbours = set(
+            [
+                new_point
+                for vector in vectors
+                if (
+                    (new_point := (point[0] + vector[0], point[1] + vector[1])) in sea_map
+                    and sea_map[new_point] > value
+                    and sea_map[new_point] != 9
+                )
+            ]
+        )
         basin = {point}.union(neighbours)
         while neighbours:
             point = neighbours.pop()
@@ -38,15 +40,15 @@ def main():
                 new_point
                 for vector in vectors
                 if (
-                        (new_point := (point[0] + vector[0], point[1] + vector[1])) in sea_map and
-                        new_point not in basin and
-                        sea_map[new_point] > value and
-                        sea_map[new_point] != 9
+                    (new_point := (point[0] + vector[0], point[1] + vector[1])) in sea_map
+                    and new_point not in basin
+                    and sea_map[new_point] > value
+                    and sea_map[new_point] != 9
                 )
             ]
             basin = basin.union(set(new_neighbours))
             neighbours = neighbours.union(set(new_neighbours))
-        basins.append(len(set(basin)))
+        basins.append(len(basin))
     print(f"Part 2: {math.prod(sorted(basins, reverse=True)[:3])}")
 
 

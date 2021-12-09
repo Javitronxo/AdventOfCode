@@ -8,10 +8,7 @@ def main():
     print(f"Part 1: {fuel_one}")
 
     mean = int(sum(puzzle_input) / len(puzzle_input))
-    fuel_two = sum(
-        (x := abs(n - mean)) * (x + 1) // 2
-        for n in puzzle_input
-    )
+    fuel_two = sum((x := abs(n - mean)) * (x + 1) // 2 for n in puzzle_input)
     print(f"Part 2: {fuel_two}")
 
 
