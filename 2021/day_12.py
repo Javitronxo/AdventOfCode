@@ -9,7 +9,7 @@ class Node:
 
     @property
     def small_cave(self) -> bool:
-        return self.name.lower() == self.name
+        return self.name.islower()
 
 
 def get_paths(tree: Dict[str, Node], part_one: bool = True) -> List[List[Node]]:

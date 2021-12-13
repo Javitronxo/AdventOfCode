@@ -21,16 +21,12 @@ def main():
         axis, n = instruction
         folded_grid = set()
         for point in grid:
-            if axis == "x":
-                if point[0] < n:
-                    folded_grid.add(point)
-                else:
-                    folded_grid.add((2 * n - point[0], point[1]))
+            if axis == "x" and point[0] > n:
+                folded_grid.add((2 * n - point[0], point[1]))
+            elif axis == "y" and point[1] > n:
+                folded_grid.add((point[0], 2 * n - point[1]))
             else:
-                if point[1] < n:
-                    folded_grid.add(point)
-                else:
-                    folded_grid.add((point[0], 2 * n - point[1]))
+                folded_grid.add(point)
         if i == 0:
             print(f"Part 1: {len(folded_grid)}")
         grid = deepcopy(folded_grid)
