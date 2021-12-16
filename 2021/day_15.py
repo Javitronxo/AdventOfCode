@@ -1,18 +1,28 @@
+from dataclasses import dataclass, field
 from queue import PriorityQueue
 from typing import Dict, Tuple
 
 Point = Tuple[int, int]
 
 
+@dataclass(order=True)
+class PrioritizedItem:
+    """From: https://docs.python.org/3.8/library/queue.html#queue.PriorityQueue"""
+    priority: int
+    point: Point = field(compare=False)
+
+
 def dijkstra_cost(start: Point, end: Point, cave_map: Dict[Point, int]) -> int:
-    # Shamelessly stolen from: https://www.redblobgames.com/pathfinding/a-star/introduction.html
+    """Dijkstra's Algorithm to find path of minimum cost
+    Shamelessly stolen from: https://www.redblobgames.com/pathfinding/a-star/introduction.html"""
     vectors = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     frontier = PriorityQueue()
-    frontier.put(start)
+    frontier.put(PrioritizedItem(0, start))
     came_from, cost_so_far = dict(), dict()
     came_from[start], cost_so_far[start] = None, 0
     while not frontier.empty():
-        current = frontier.get()
+        item = frontier.get()
+        current = item.point
         if current == end:
             break
         for v in vectors:
@@ -21,7 +31,8 @@ def dijkstra_cost(start: Point, end: Point, cave_map: Dict[Point, int]) -> int:
             new_cost = cost_so_far[current] + cave_map[new_point]
             if new_point not in cost_so_far or new_cost < cost_so_far[new_point]:
                 cost_so_far[new_point] = new_cost
-                frontier.put(new_point)
+                priority = new_cost
+                frontier.put(PrioritizedItem(priority, new_point))
                 came_from[new_point] = current
     return cost_so_far[end]
 
