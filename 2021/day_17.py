@@ -22,9 +22,10 @@ def main():
     # Brute force approach
     # We are going to scan all potential points since we need them for part 2, and retrieve the max height for part 1
     x_range = max(abs(x_min), abs(x_max))
+    x_step = x_max // abs(x_max)
     y_range = max(abs(y_min), abs(y_max))
     shots = dict()
-    for vel_x in range(-x_range, x_range + 1):
+    for vel_x in range(0, x_range + 1, x_step):
         for vel_y in range(-y_range, y_range + 1):
             pos = Coordinates(0, 0)
             vel = Coordinates(vel_x, vel_y)
