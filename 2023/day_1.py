@@ -14,7 +14,7 @@ def main():
                     ints_two.append(int(char))
                 except ValueError:
                     for key, value in mapping.items():
-                        if key == "".join(stripped_line[i:i + len(key)]):
+                        if key == "".join(stripped_line[i : i + len(key)]):
                             ints_two.append(value)
             values_one.append(int(f"{ints_one[0]}{ints_one[-1]}"))
             values_two.append(int(f"{ints_two[0]}{ints_two[-1]}"))

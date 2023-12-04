@@ -14,10 +14,7 @@ class Card:
 
     @property
     def points(self) -> int:
-        if self.num_matches == 0:
-            return 0
-        else:
-            return 2 ** (self.num_matches - 1)
+        return 2 ** (self.num_matches - 1) if self.num_matches > 0 else 0
 
 
 def main():
@@ -27,8 +24,8 @@ def main():
         for line in f.readlines():
             # Parse input line
             card_id_str, numbers_str = line.split(": ")
-            card_id = int(card_id_str.split()[1])
             wining_numbers_str, my_numbers_str = numbers_str.split(" | ")
+            card_id = int(card_id_str.split()[1])
             wining_numbers = [int(i) for i in wining_numbers_str.split()]
             my_numbers = [int(i) for i in my_numbers_str.split()]
 
