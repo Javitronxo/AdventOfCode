@@ -19,9 +19,12 @@ def read_file_to_int_dict(file_name: str) -> Dict[int, int]:
     return input_dict
 
 
-def lcm(x: int, y: int) -> int:
+def lcm(input_list: List[int]):
     """This function computes LCM"""
-    return (x * y) // gcd(x, y)
+    value = 1
+    for i in input_list:
+        value = value * i // gcd(value, i)
+    return value
 
 
 def get_md5_hash(input_string: str, stretch_factor: int = None) -> str:
